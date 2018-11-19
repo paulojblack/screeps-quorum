@@ -6,6 +6,7 @@ let screeps = require('gulp-screeps')
 let rename = require('gulp-rename')
 let insert = require('gulp-insert')
 let clean = require('gulp-clean')
+// let watch = require('gulp-watch')
 let minimist = require('minimist')
 let git = require('git-rev-sync')
 
@@ -103,4 +104,8 @@ gulp.task('ci-version', (cb) => {
   fs.writeFile('package.json', JSON.stringify(pkg, null, 2), cb)
 })
 
-gulp.task('default', ['clean', 'copy', 'deploy'])
+gulp.task('watch', function() {
+    gulp.watch('src/**/*.js', ['default'])
+})
+
+gulp.task('default', ['clean', 'copy', 'deploy', 'watch'])
